@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Rock Paper Scissors</title>
+    </head>
+
+    <body>
+   <p id="content"></p>
+   <h1>Total Score</h1>
+   <p id="score"></p>
+  <marquee><i id="res"></i></marquee>
+ 
+     
+        <script>
+        YourScore=0;
+        ComputerScore=0;
+            computerPlay=()=> {
+                let play = Math.round(Math.random() * 2);
+                
+                switch (play) {
+                    case 0:
+                        return "rock";
+                    case 1:
+                        return "paper";
+                    case 2:
+                        return "scissors";
+                    default:
+                        console.log("Error in computerPlay()");
+                        break;
+                }
+            }
+
+            function playerPlay() {
+                while(true) {
+                    let play = prompt("Please make a choice: \nrock\npaper\nscissors.").toLowerCase();
+                    if (play === "rock" || play === "paper" || play === "scissors") {
+                        return play;
+                    }
+                    alert("Please enter a correct choice");
+                }
+            }
+
+            function playRound(playerSelection, computerSelection) {
+                if ((playerSelection === "rock" && computerSelection === "scissors") ||
+                    (playerSelection === "paper" && computerSelection === "rock") ||
+                    (playerSelection === "scissors" && computerSelection === "paper")
+                    ) {
+
+                    alert("You win! " + playerSelection + " beats " + computerSelection + "!");
+                    YourScore=YourScore+1;
+
+                } else if ((playerSelection === "rock" && computerSelection === "paper") ||
+                    (playerSelection === "paper" && computerSelection === "scissors") ||
+                    (playerSelection === "scissors" && computerSelection === "rock")
+                    ) {
+
+                   alert("You lose. " + computerSelection + " beats " + playerSelection + ".");
+                   ComputerScore=ComputerScore+1;
+                } else {
+
+                alert("It's a tie.  You both picked " + computerSelection);
+
+                }
+            }
+
+                            
+
+       
+
+            function playGame() {
+               
+             
+               let noTimes = window.prompt("Enter the number of times you wanna play the game:");
+                
+                if(!isNaN(noTimes))
+                for (i=0; i<noTimes; i++) {
+                    console.log(playRound(playerPlay(), computerPlay()));
+                }
+                else
+                { alert("Enter only numbers");
+                   }
+              
+             
+            }
+           function totalScore(){
+          
+           if(ComputerScore>YourScore){
+            document.getElementById("score").innerHTML="You loose---Better Luck Next Time"
+             document.getElementById("res").innerHTML=("YourScore: " + YourScore + "\n" +"ComputerScore:"+ ComputerScore);
+          }
+	  else if(ComputerScore<YourScore)
+          {
+		document.getElementById("score").innerHTML="You Win--->>>"
+                document.getElementById("res").innerHTML=("YourScore: " + YourScore + "\n" +"ComputerScore:"+ ComputerScore);
+          }
+          else
+          {
+           document.getElementById("score").innerHTML="<<<----Its a TIE--->>>"
+          document.getElementById("res").innerHTML=("YourScore: " + YourScore + "\n" +"ComputerScore:"+ ComputerScore);
+          }
+     
+
+          }
+
+
+            playGame();
+            totalScore();
+
+        </script>
+    </body>
+</html>
